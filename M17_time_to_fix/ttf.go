@@ -26,21 +26,6 @@ const dateFmt = "2006-01-02 15:04"
 
 /* ---------- Types ---------- */
 
-// type osvFile struct {
-// 	Vulns []struct {
-// 		ID       string `json:"id"`
-// 		Affected []struct {
-// 			Ranges []struct {
-// 				Type   string `json:"type"`
-// 				Events []struct {
-// 					Introduced string `json:"introduced,omitempty"`
-// 					Fixed      string `json:"fixed,omitempty"`
-// 				} `json:"events"`
-// 			} `json:"ranges"`
-// 		} `json:"affected"`
-// 	} `json:"vulns"`
-// }
-
 type osvFile struct {
 	Vulns []struct {
 		ID string `json:"id"`
@@ -168,7 +153,7 @@ func main() {
 		for _, aff := range v.Affected {
 			for _, rg := range aff.Ranges {
 				if rg.Type != "SEMVER" && rg.Type != "ECOSYSTEM" && rg.Type != "GIT" {
-					continue // anderes Schema (git), überspringen
+					continue
 				}
 				var curIntro string
 				for _, ev := range rg.Events {
